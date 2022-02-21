@@ -4,4 +4,3 @@ pandas
 dash
 pytest
 dash-bootstrap-components
-pytest
