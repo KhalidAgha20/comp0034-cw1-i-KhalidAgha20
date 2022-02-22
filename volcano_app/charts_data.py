@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+import numpy as np
 
 
 class VolcanoData:
@@ -11,7 +12,6 @@ class VolcanoData:
         self.df_year_eruptions = pd.DataFrame()
         self.countries = []
         self.import_data()
-
 
     def import_data(self):
         volcano_csv = Path(__file__).parent.joinpath('data', 'volcano_list.csv')
@@ -27,16 +27,18 @@ class VolcanoData:
         countries = self.volcano['COUNTRY'].unique().tolist()
         countries.sort()
         volcano_numbers = self.volcano['COUNTRY'].value_counts()[countries]
-        self.df_choropleth = pd.DataFrame(list(zip(countries, volcano_numbers)), columns= ["COUNTRY", "VOLCANO"])
+        self.df_choropleth = pd.DataFrame(list(zip(countries, volcano_numbers)), columns=["COUNTRY", "VOLCANO"])
 
         eruption_numbers = self.eruptions['Country'].value_counts()[self.countries]
-        eruptions = pd.DataFrame(list(zip(self.countries, eruption_numbers)), columns= ["Country", "ERUPTIONS"])
+        eruptions = pd.DataFrame(list(zip(self.countries, eruption_numbers)), columns=["Country", "ERUPTIONS"])
 
         self.df_choropleth = self.df_choropleth.merge(eruptions, how="left", left_on="COUNTRY", right_on="Country")
-        self.df_choropleth.drop(["Country"], axis = 1, inplace = True)
+        self.df_choropleth.drop(["Country"], axis=1, inplace=True)
         self.df_choropleth['ERUPTIONS'] = self.df_choropleth['ERUPTIONS'].fillna(0)
-        self.df_choropleth["RATIO"]= self.df_choropleth["ERUPTIONS"]/self.df_choropleth["VOLCANO"]
-        self.df_choropleth=self.df_choropleth.merge(self.iso, how="left", left_on="COUNTRY", right_on="Country")
+        self.df_choropleth['ERUPTIONS_LOG'] = np.log10(self.df_choropleth['ERUPTIONS'])
+        self.df_choropleth['ERUPTIONS_LOG'].fillna(0)
+        self.df_choropleth["RATIO"] = self.df_choropleth["ERUPTIONS"] / self.df_choropleth["VOLCANO"]
+        self.df_choropleth = self.df_choropleth.merge(self.iso, how="left", left_on="COUNTRY", right_on="Country")
         self.df_choropleth.drop(["Country"], axis=1, inplace=True)
 
     def process_data_for_line_charts(self):
@@ -44,3 +46,7 @@ class VolcanoData:
         years.sort()
         eruptions_per_year = self.eruptions["Start Year"].value_counts()[years]
         self.df_year_eruptions = pd.DataFrame(list(zip(years, eruptions_per_year)), columns=["YEAR", "ERUPTIONS"])
+
+x=VolcanoData()
+x.process_data_for_choropleth()
+print(df_choropleth)

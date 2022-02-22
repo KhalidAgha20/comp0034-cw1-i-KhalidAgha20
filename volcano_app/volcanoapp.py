@@ -5,18 +5,22 @@ import plotly.express as px
 from dash import dcc
 from dash import html
 from volcano_app.charts_data import VolcanoData
-from volcano_app.create_charts import Choropleth
+import volcano_app.create_charts as CC
 
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 data = VolcanoData()
-data.process_data_for_choropleth()
 
-cc=Choropleth(data)
-data_type = "ERUPTIONS"
-fig_cc = cc.create_choropleth(data_type)
+data.process_data_for_line_charts()
+lc = CC.LineGraph(data)
+fig_lc = lc.create_linechart()
+
+data.process_data_for_choropleth()
+cc = CC.Choropleth(data)
+datatype = "VOLCANO"
+fig_cc = cc.create_choropleth(datatype)
 
 app.layout = html.Div(children=[
     html.H1(children='Hello Dash'),
@@ -26,8 +30,13 @@ app.layout = html.Div(children=[
     '''),
 
     dcc.Graph(
-        id='example-graph',
+        id='choropleth',
         figure=fig_cc
+    ),
+
+    dcc.Graph(
+        id='line-chart',
+        figure=fig_lc
     )
 ])
 
