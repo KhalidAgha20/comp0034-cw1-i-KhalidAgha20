@@ -16,7 +16,7 @@ fig_lc = lc.create_linechart()
 layout = html.Div(children=[
     html.Br(),
 
-    html.H1(children='Volcano Data on the Map'),
+    html.H1(children='Change in Number of Volcano Eruptions'),
 
     html.H3(children="T"),
 
