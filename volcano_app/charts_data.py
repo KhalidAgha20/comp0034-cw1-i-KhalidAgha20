@@ -35,11 +35,12 @@ class VolcanoData:
         self.df_choropleth = self.df_choropleth.merge(eruptions, how="left", left_on="COUNTRY", right_on="Country")
         self.df_choropleth.drop(["Country"], axis=1, inplace=True)
         self.df_choropleth['ERUPTIONS'] = self.df_choropleth['ERUPTIONS'].fillna(0)
-        self.df_choropleth['ERUPTIONS_LOG'] = np.log10(self.df_choropleth['ERUPTIONS'])
-        self.df_choropleth['ERUPTIONS_LOG'].fillna(0)
         self.df_choropleth["RATIO"] = self.df_choropleth["ERUPTIONS"] / self.df_choropleth["VOLCANO"]
         self.df_choropleth = self.df_choropleth.merge(self.iso, how="left", left_on="COUNTRY", right_on="Country")
         self.df_choropleth.drop(["Country"], axis=1, inplace=True)
+
+    def process_data_for_bar_chart(self, column):
+        self.df_choropleth = self.df_choropleth.sort_values(column, ascending=False).head(10)
 
     def process_data_for_line_charts(self):
         years = self.eruptions["Start Year"].unique().tolist()
@@ -47,6 +48,4 @@ class VolcanoData:
         eruptions_per_year = self.eruptions["Start Year"].value_counts()[years]
         self.df_year_eruptions = pd.DataFrame(list(zip(years, eruptions_per_year)), columns=["YEAR", "ERUPTIONS"])
 
-x=VolcanoData()
-x.process_data_for_choropleth()
-print(df_choropleth)
+

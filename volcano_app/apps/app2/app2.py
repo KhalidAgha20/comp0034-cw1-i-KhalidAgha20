@@ -33,7 +33,7 @@ layout = html.Div(children=[
 
     dcc.Graph(
         id='yearly-eruptions',
-        figure=fig_lc
+        figure=fig_lc,
     )
 ])
 

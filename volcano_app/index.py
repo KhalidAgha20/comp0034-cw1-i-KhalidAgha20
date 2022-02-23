@@ -27,7 +27,7 @@ navbar = dbc.Navbar(
                 ),
                 style={"textDecoration": "none"},
             ),
-            dbc.NavItem(dbc.NavLink("Volcanoes on the World Map", href="/app1/"), id="page-1-link"),
+            dbc.NavItem(dbc.NavLink("Volcanoes on the World Map", href="/app1/"), className="text-danger",),
             dbc.NavItem(dbc.NavLink("Yearly Data", href="/app2/"), id="page-2-link"),
             dbc.NavItem(dbc.NavLink("By Country", href="/app2/"), id="page-3-link")
         ]
