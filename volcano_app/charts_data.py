@@ -11,6 +11,7 @@ class VolcanoData:
         self.df_choropleth = pd.DataFrame()
         self.df_year_eruptions = pd.DataFrame()
         self.countries = []
+        self.v_countries = []
         self.import_data()
 
     def import_data(self):
@@ -24,10 +25,10 @@ class VolcanoData:
         self.countries.sort()
 
     def process_data_for_choropleth(self):
-        countries = self.volcano['COUNTRY'].unique().tolist()
-        countries.sort()
-        volcano_numbers = self.volcano['COUNTRY'].value_counts()[countries]
-        self.df_choropleth = pd.DataFrame(list(zip(countries, volcano_numbers)), columns=["COUNTRY", "VOLCANO"])
+        self.v_countries = self.volcano['COUNTRY'].unique().tolist()
+        self.v_countries.sort()
+        volcano_numbers = self.volcano['COUNTRY'].value_counts()[self.v_countries]
+        self.df_choropleth = pd.DataFrame(list(zip(self.v_countries, volcano_numbers)), columns=["COUNTRY", "VOLCANO"])
 
         eruption_numbers = self.eruptions['Country'].value_counts()[self.countries]
         eruptions = pd.DataFrame(list(zip(self.countries, eruption_numbers)), columns=["Country", "ERUPTIONS"])
@@ -47,5 +48,4 @@ class VolcanoData:
         years.sort()
         eruptions_per_year = self.eruptions["Start Year"].value_counts()[years]
         self.df_year_eruptions = pd.DataFrame(list(zip(years, eruptions_per_year)), columns=["YEAR", "ERUPTIONS"])
-
 
