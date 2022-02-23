@@ -5,7 +5,7 @@ https://github.com/ucl-comp0035/comp0034-cw1-i-KhalidAgha20
 
 ##Visualizations
 ### Visualization 1: Shaded world maps
-
+#### Which countries have the most volcanoes and eruptions?
 This visualization is tailored towards scientists interested in volcanoes and discovering the most volcano dense areas 
 on our planet. This will most probably be professionals with a very serious mindset. Data must be delivered accurately
 and efficiently.
@@ -25,6 +25,7 @@ the figure is that the countries with no data still appear in the chart. It woul
 transparent.
 
 ### Visualization 2: Bar charts showing the countries with most eruptions and volcanoes
+#### Which countries have the most volcanoes and eruptions?
 This visualization will be intended to deliver some quick facts about the top 10 countries with most volcano's and 
 eruptions. It is mainly intended to accompany another visualization 1 and act as a support to it. Hence, it has the same
 target audience as visualization 1 and will follow the same design aspects.
@@ -39,6 +40,7 @@ It will be minimalistic with little to no colors to bring the focus oif the user
 This visualization exactly matches the description and demonstrates the data in a brilliant manner.
 
 ### Visualization 3: Line Graph Showing the trends with volcanic eruptions over time
+#### Did the number of volcanic eruptions per year increase over time?
 Scientists are interested in finding trends in difference places. During the data exploration phase, it was discovered
 that the number of volcanic eruptions is on a content rise. This was a crucial factor into including this data into the 
 final app. This graph once again is tailored towards experts which means the tone of the graph needs to be as 
@@ -55,6 +57,7 @@ The graph shows the trend of the dataset. However, it does it in a very poor man
 can be smoothened by plotting a line of best fit instead. This way, no confusions will take place regarding the figure.
 
 ### Visualization 4: Bar Graphs to Categorize the severity of eruptions
+#### Did the severity of volcanic eruptions increase over time?
 This figure is planned to accompany the previous one meaning they have the same audience. This visualization is focusing
 on demonstrating how the severity, of volcanic eruptions changed over time. Volcanic Eruptions are given a number 
 between 0-8. This is called the VEI and is used to measure their severity. The dataset includes this information which
@@ -72,6 +75,7 @@ fitting yhe bars closer together. Furthermore, the slider could be started at a 
 
 
 ### Visualization 5: Obtaining the exact locations of volcanoes for individual countries
+#### Where are the volcanoes located in a specific country and ae they dangerous?
 Although the entire web app is meant to be used for serious matters, there needs to be soe visualizations which can be
 used by everyone. This figure is intended to plot the location of individual volcanoes on the map. The users will be
 allowed to pick between a list of countries and the visualization will automatically update. This is something
@@ -89,6 +93,7 @@ dangerous volcanoes. This could be beneficial for tourists to avoid going to loc
 
 
 ### Visualization 6: Bar Graphs Showing the Population of people living close to volcanoes
+#### Which countries have the most people living near volcanoes?
 These types of number are crucial for the safety of the population. Volcanoes can erupt at any time leaving millions
 of people stranded. This visualization is intended to be viewed by governments and people with influence. The figure
 needs to be simple and provide a quick insight into the problem.
