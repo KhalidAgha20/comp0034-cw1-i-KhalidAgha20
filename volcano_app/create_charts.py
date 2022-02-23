@@ -77,8 +77,17 @@ class MapBox:
     def create_mapbox(self, country):
         df = self.data.volcano.loc[self.data.volcano["COUNTRY"] == country]
         px.set_mapbox_access_token(open(".mapbox_token").read())
-        fig = px.scatter_mapbox(df, lat="LATITUDE", lon="LONGITUDE", color="ERUPTIONS",
-                                color_continuous_scale="bluered", zoom=3, hover_name="NAME")
+        fig = px.scatter_mapbox(df,
+                                lat="LATITUDE",
+                                lon="LONGITUDE",
+                                color="ERUPTIONS",
+                                color_continuous_scale="bluered",
+                                zoom=3.5,
+                                hover_name="NAME",
+                                labels={
+                                    "ERUPTIONS": "Number of Volcanic Eruptions",
+                                },
+                                )
         fig.update_layout(
             margin=dict(l=20, r=20, t=20, b=20)
         )
@@ -87,8 +96,13 @@ class MapBox:
     def homegraph(self):
         df = self.data.eruptions.head(20)
         px.set_mapbox_access_token(open(".mapbox_token").read())
-        fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", size=df["Number"]*0+1,
-                                zoom=0, hover_name="Name")
+        fig = px.scatter_mapbox(df,
+                                lat="Latitude",
+                                lon="Longitude",
+                                size=df["Number"] * 0 + 1,
+                                zoom=1,
+                                hover_name="Name"
+                                )
         fig.update_layout(
             margin=dict(l=20, r=20, t=20, b=20)
         )
@@ -98,7 +112,7 @@ class MapBox:
 class LiveChart:
 
     def __init__(self, data):
-        self.data=data
+        self.data = data
 
     def create_live(self):
         df = self.data.df_live
@@ -116,4 +130,29 @@ class LiveChart:
             'xaxis': {'title': 'VEI of Eruptions', 'range': [-0.5, 8.5]},
             'yaxis': {'title': 'Number of Eruptions', 'range': [0, 15]}
         })
+        return figure
+
+
+class PolarPlot:
+
+    def __init__(self, data):
+        self.data = data
+
+    def create_polar(self, distance):
+        df = self.data.df_polar
+        figure = px.bar(df,
+                        x="COUNTRY",
+                        y=distance,
+                        labels={
+                            "COUNTRY": "Country",
+                            distance: "Population in Vicinity of Eruptions",
+                        },
+                        title='Number of People Living Close to Volcanoes'
+                        )
+        figure.update_traces(marker_color="#800020")
+        figure.update_layout({
+            'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+            'paper_bgcolor': 'rgba(0, 0, 0, 0)'
+        })
+        figure.update_yaxes(type="log")
         return figure

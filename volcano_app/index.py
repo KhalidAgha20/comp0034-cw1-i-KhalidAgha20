@@ -8,6 +8,7 @@ from create_charts import MapBox
 from volcano_app.apps.app1 import app1
 from volcano_app.apps.app2 import app2
 from volcano_app.apps.app3 import app3
+from volcano_app.apps.app4 import app4
 
 from volcano_app.app import app
 
@@ -36,7 +37,8 @@ navbar = dbc.Navbar(
             ),
             dbc.NavItem(dbc.NavLink("Volcanoes on the World Map", href="/app1/"), className="text-danger", ),
             dbc.NavItem(dbc.NavLink("Yearly Data", href="/app2/"), id="page-2-link"),
-            dbc.NavItem(dbc.NavLink("Search By Country", href="/app3/"), id="page-3-link")
+            dbc.NavItem(dbc.NavLink("Search By Country", href="/app3/"), id="page-3-link"),
+            dbc.NavItem(dbc.NavLink("Risk to the Population", href="/app4/"), id="page-4-link")
         ]
     ),
     color="#800020",
@@ -57,7 +59,8 @@ index_layout = dbc.Container([
     ], style={'textAlign': 'center'}),
     html.Br(),
     dbc.Row([
-        dbc.Col(width=6, children=[
+        dbc.Col(width=1),
+        dbc.Col(width=10, children=[
             html.H6("Latest Volcanic Eruptions", style={'textAlign': 'center'}),
             dcc.Graph(id="latest-eruptions",
                       figure=fig1)
@@ -75,6 +78,8 @@ def display_page(pathname):
         return app2.layout
     if pathname == '/app3/':
         return app3.layout
+    if pathname == '/app4/':
+        return app4.layout
     elif pathname == '/':
         return index_layout
     else:

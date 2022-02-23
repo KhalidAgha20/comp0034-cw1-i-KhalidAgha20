@@ -11,6 +11,7 @@ class VolcanoData:
         self.df_choropleth = pd.DataFrame()
         self.df_year_eruptions = pd.DataFrame()
         self.df_live = pd.DataFrame()
+        self.df_polar = pd.DataFrame()
         self.countries = []
         self.v_countries = []
         self.import_data()
@@ -57,4 +58,8 @@ class VolcanoData:
         self.df_live.columns = ['count']
         self.df_live = self.df_live.reset_index()
 
-
+    def process_data_for_circular_bar(self):
+        df = self.volcano
+        self.df_polar = df.groupby(["COUNTRY"]).agg(
+            {'POP_5': 'sum', 'POP_10': 'sum', 'POP_30': 'sum', 'POP_100': 'sum', 'ERUPTIONS': 'sum'})
+        self.df_polar = self.df_polar.reset_index()
