@@ -10,6 +10,7 @@ class VolcanoData:
         self.iso = pd.DataFrame()
         self.df_choropleth = pd.DataFrame()
         self.df_year_eruptions = pd.DataFrame()
+        self.df_live = pd.DataFrame()
         self.countries = []
         self.v_countries = []
         self.import_data()
@@ -48,4 +49,12 @@ class VolcanoData:
         years.sort()
         eruptions_per_year = self.eruptions["Start Year"].value_counts()[years]
         self.df_year_eruptions = pd.DataFrame(list(zip(years, eruptions_per_year)), columns=["YEAR", "ERUPTIONS"])
+
+    def process_data_for_live_chart(self):
+        df = self.eruptions
+        df = df[df["VEI"].notna()]
+        self.df_live = df.groupby(["Start Year", "VEI"]).agg({"Name": "count"})
+        self.df_live.columns = ['count']
+        self.df_live = self.df_live.reset_index()
+
 

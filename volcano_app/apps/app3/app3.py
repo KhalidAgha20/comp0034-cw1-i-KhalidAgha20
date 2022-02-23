@@ -34,7 +34,7 @@ layout = dbc.Container(fluid=True, children=[
     html.Br(),
     dbc.Row([
         dbc.Col(width=1),
-        dbc.Col(width=4, children=[
+        dbc.Col(width=3, children=[
             html.H6("Select Country"),
             dcc.Dropdown(data.v_countries,
                          id="country-dropdown",

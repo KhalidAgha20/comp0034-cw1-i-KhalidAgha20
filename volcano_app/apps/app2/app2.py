@@ -13,27 +13,45 @@ data.process_data_for_line_charts()
 lc = CC.LineGraph(data)
 fig_lc = lc.create_linechart()
 
+data.process_data_for_live_chart()
+lb = CC.LiveChart(data)
+fig_lb = lb.create_live()
+
 layout = html.Div(children=[
     html.Br(),
+    dbc.Row([
+        dbc.Col(width=1),
 
-    html.H1(children='Change in Number of Volcano Eruptions'),
+        dbc.Col(width=10, children=[
+            html.H1(children='Change in Number of Volcano Eruptions'),
+        ]),
 
-    html.H3(children="T"),
+        dbc.Col(width=1)
+    ]),
 
-    html.Br(),
+    dbc.Row([
+        dbc.Col(width=1),
 
-    html.H4("Select Chart Type"),
-    dcc.Dropdown(id="map-type-dropdown",
-                 options=[
-                     {'label': 'Number of volcanoes', 'value': 'VOLCANO'},
-                     {'label': 'Number of eruptions', 'value': 'ERUPTIONS'},
-                     {'label': 'Ratio of eruptions to number of volcanoes', 'value': 'RATIO'},
-                 ],
-                 value="VOLCANO"),
+        dbc.Col(width=10, children=[
+            dcc.Graph(
+                id='yearly-eruptions',
+                figure=fig_lc,
+            )
+        ]),
 
-    dcc.Graph(
-        id='yearly-eruptions',
-        figure=fig_lc,
-    )
+        dbc.Col(width=1)
+    ]),
+
+    dbc.Row([
+        dbc.Col(width=1),
+
+        dbc.Col(width=10, children=[
+            dcc.Graph(
+                id='live-chart',
+                figure=fig_lb,
+            )
+        ]),
+
+        dbc.Col(width=1)
+    ]),
 ])
-

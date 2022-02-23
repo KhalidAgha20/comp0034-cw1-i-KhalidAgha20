@@ -21,6 +21,7 @@ class Choropleth:
                                         "RATIO": "Ratio of Eruptions to Volcanoes"
                                         })
                                )
+        figure.update_traces(marker_line_width=0)
         return figure
 
 
@@ -37,7 +38,11 @@ class BarGraph:
                         title="Top 10 Countries",
                         labels={"COUNTRY": ""}
                         )
-        figure.update_traces(marker_color='red')
+        figure.update_traces(marker_color="#800020")
+        figure.update_layout({
+            'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+            'paper_bgcolor': 'rgba(0, 0, 0, 0)'
+        })
         return figure
 
 
@@ -49,8 +54,18 @@ class LineGraph:
     def create_linechart(self):
         figure = px.line(self.data.df_year_eruptions,
                          x="YEAR",
-                         y="ERUPTIONS"
+                         y="ERUPTIONS",
+                         labels={
+                             "YEAR": "Year",
+                             "ERUPTIONS": "Number of Volcanic Eruptions in the Year",
+                         },
+                         title="Number of Volcanic Eruptions VS Time Graph"
                          )
+        figure.update_layout({
+            'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+            'paper_bgcolor': 'rgba(0, 0, 0, 0)'
+        },
+        )
         return figure
 
 
@@ -79,3 +94,26 @@ class MapBox:
         )
         return fig
 
+
+class LiveChart:
+
+    def __init__(self, data):
+        self.data=data
+
+    def create_live(self):
+        df = self.data.df_live
+        figure = px.bar(df,
+                        x="VEI",
+                        y="count",
+                        animation_frame="Start Year",
+                        animation_group="VEI",
+                        title="Number of Eruptions for Each VEI"
+                        )
+        figure.update_traces(width=0.5, marker_color="#800020")
+        figure.update_layout({
+            'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+            'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+            'xaxis': {'title': 'VEI of Eruptions', 'range': [-0.5, 8.5]},
+            'yaxis': {'title': 'Number of Eruptions', 'range': [0, 15]}
+        })
+        return figure
