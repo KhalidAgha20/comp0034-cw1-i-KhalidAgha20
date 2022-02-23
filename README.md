@@ -4,6 +4,7 @@
 https://github.com/ucl-comp0035/comp0034-cw1-i-KhalidAgha20
 
 ##Visualizations
+
 ### Visualization 1: Shaded world maps
 #### Which countries have the most volcanoes and eruptions?
 This visualization is tailored towards scientists interested in volcanoes and discovering the most volcano dense areas 
@@ -111,5 +112,18 @@ Excessive colors will be removed to bring all attention to the data rather than 
 The graph shows the required data brilliantly and as described. However, it can now be seen that it is slightly
 confusing. Thus, the final app, will include a search bar which will give information on the country without the need to
 look at the graph.
+
+### Visualization 0: Latest Eruptions
+#### Where did the recent eruptions occur?
+This visualization more of a welcome to the web app. Thus, it is not specifically tailored towards any specific
+audience. It is more of a sneak peek on what the app has to offer for the audience. It is intended to be placed on the
+index page of the webapp.
+
+#### Visualization Review
+![](img/v0.png)
+
+The visualization meets the wanted standard as it does what it was required to do. It is not an important visualization.
+Hence, it was named visualization 0.
+
 
 
