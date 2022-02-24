@@ -17,8 +17,7 @@ data.process_data_for_choropleth()
 cc = MapBox(data)
 fig1 = cc.homegraph()
 
-PLOTLY_LOGO = 'https://lh4.googleusercontent.com' \
-              '/WqiYLPs75TX1SezYdaK7m5FX6hIhgeGA2PbMohIjJmk1ubsm5irk03iSqKM2LPEasC7wkjJ9RLJ1xQ=w3840-h1933 '
+PLOTLY_LOGO = '/assets/logo.png'
 
 navbar = dbc.Navbar(
     dbc.Container(
