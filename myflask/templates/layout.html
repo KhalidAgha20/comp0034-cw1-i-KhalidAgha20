@@ -1,10 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-</body>
-</html>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/denali.css') }}">
+</head>
+<title>{{ title }}</title>
+
+{# Add to the body section #}
+<header>
+    {% include 'navbar.html' %}
+</header>
+<main>
+    <div class="checkbox">
+        {% block content %}{% endblock %}
+    </div>
+</main>
