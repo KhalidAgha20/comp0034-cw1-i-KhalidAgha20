@@ -16,7 +16,7 @@ def create_app(config_class_name):
     #login_manager.init_app(app)
     csrf.init_app(app)
 
-    from flask_app.auth.routes import auth_bp
+    from myflask.auth.routes import auth_bp
     app.register_blueprint(auth_bp)
 
     return app
