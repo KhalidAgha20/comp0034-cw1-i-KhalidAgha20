@@ -1,12 +1,12 @@
-from flask_app import create_app, config
+from flask import Flask
 
-app = create_app(config.DevelopmentConfig)
+app = Flask(__name__)
 
 
 @app.route('/')
-def hw():
-    return 'jknj'
+def hello_world():
+    return 'cock!'
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
