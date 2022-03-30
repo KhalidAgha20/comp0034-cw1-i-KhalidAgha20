@@ -16,6 +16,11 @@ def create_app(config_class_name):
     #login_manager.init_app(app)
     csrf.init_app(app)
 
+    with app.app_context():
+        from myflask.models import User
+        db.create_all()
+
+
     from myflask.auth.routes import auth_bp
     app.register_blueprint(auth_bp)
 
