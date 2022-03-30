@@ -1,3 +1,5 @@
-graft my_app/static
-graft my_app/templates
+global-exclude *.py[cod]
+exclude test*/*.py
+graft myflask/static
+graft myflask/templates
 global-exclude *.pyc
