@@ -5,14 +5,15 @@ from myflask import db
 from myflask.auth.forms import SignupForm
 from myflask.models import User
 
-auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
+auth_bp = Blueprint('auth', __name__)
 
 
-@auth_bp.route('/')
+@auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm(request.form)
     if form.validate_on_submit():
-        user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data)
+        user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data,
+                    DOB=form.DOB.data)
         user.set_password(form.password.data)
         try:
             db.session.add(user)
