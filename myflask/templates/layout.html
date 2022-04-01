@@ -17,9 +17,8 @@
 <header>
     {% include 'navbar.html' %}
 </header>
-<main>
-    {% include 'sidebar.html' %}
-    <div class="checkbox">
-        {% block content %}{% endblock %}
-    </div>
-</main>
+<body>
+{#    {% include 'sidebar.html' %}#}
+{% block content %}
+{% endblock %}
+</body>

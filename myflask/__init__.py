@@ -17,7 +17,8 @@ def create_app(config_class_name):
     csrf.init_app(app)
 
     with app.app_context():
-        db.Model.metadata.reflect(bind=db.engine)
+        from myflask.models import User
+        db.create_all()
 
 
     from myflask.auth.routes import auth_bp

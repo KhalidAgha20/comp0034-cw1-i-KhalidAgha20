@@ -15689,16 +15689,16 @@ table.table__expanded tr {
 }
 
 .tabs.is-primary.is-vertical ul li:hover {
-    box-shadow: inset 0px 0px 0px 1px rgba(0, 76, 179, .1)
+    box-shadow: inset 0px 0px 0px 1px rgba(135, 206, 235, 1)
 }
 
 .tabs.is-primary.is-vertical ul li:hover > * {
-    color: #004cb3
+    color: rgba(135, 206, 235, 1)
 }
 
 .tabs.is-primary.is-vertical ul li.is-active {
-    box-shadow: inset 0px 0px 0px 1px rgba(1, 110, 255, .1);
-    background: rgba(1, 110, 255, .1);
+    box-shadow: inset 0px 0px 0px 1px rgba(135, 206, 235, 1);
+    background: rgba(135, 206, 235, 1);
     font-weight: bold
 }
 
