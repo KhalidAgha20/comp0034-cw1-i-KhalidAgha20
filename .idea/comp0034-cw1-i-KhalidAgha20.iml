@@ -11,6 +11,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="denali-icon-font" level="application" />
     <orderEntry type="library" name="denali-css" level="application" />
+    <orderEntry type="library" name="foundation-sites" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

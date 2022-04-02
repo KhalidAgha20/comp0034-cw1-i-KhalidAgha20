@@ -13,15 +13,15 @@ def signup():
     form = SignupForm(request.form)
     if form.validate_on_submit():
         user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data,
-                    DOB=form.DOB.data, user_type=form.user_type.data)
+                    DOB=form.DOB.data, user_type=form.user_type.data, country=form.country.data)
         user.set_password(form.password.data)
         try:
             db.session.add(user)
             db.session.commit()
-            flash(f"Hello, {user.first_name} {user.last_name}. You are signed up.")
+            flash(f"Hello, {user.first_name}. You have successfully signed up.", 'green-500')
         except IntegrityError:
             db.session.rollback()
-            flash(f'Error, unable to register {form.email.data}. ', 'error')
+            flash(f'Error, unable to register {form.email.data}. ', 'red-500')
             return redirect(url_for('auth.signup'))
         return redirect(url_for('main.index'))
     return render_template('signup.html', title='Sign Up', form=form)

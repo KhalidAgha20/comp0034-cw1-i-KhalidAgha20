@@ -1,5 +1,12 @@
 {% extends 'layout.html' %}
 {% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="alert is-inline has-bg-{{ category }}">
+                <p class="is-bold">{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endwith %}
     <h1>{{ title }}</h1>
     <p>This is the home page.</p>
 {% endblock %}
