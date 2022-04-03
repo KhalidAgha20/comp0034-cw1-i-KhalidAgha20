@@ -20,7 +20,7 @@
 
         <div class="overflow-y-auto flex-auto">
             <div class="container-full m-t-30 m-b-40">
-                <h2 style="text-align: center">Create Your Free Account</h2>
+                <h2>Create Your Free Account</h2>
 
 
                 <br>
@@ -31,52 +31,23 @@
                     <div class="input-group responsive m-b-30">
                         {{ form.user_type.label }}
                         <div class="radio m-r-20">
-                            <input type="radio" value="A" name="user_type" id="radio-sample-a"/>
-                            <label for="radio-sample-a">Female</label>
+                            <input type="radio" value="C" name="user_type" id="radio-sample-a"/>
+                            <label for="radio-sample-a">Customer</label>
                         </div>
                         <br>
                         <div class="radio">
-                            <input type="radio" value="B" name="user_type" id="radio-sample-b"/>
-                            <label for="radio-sample-b">Male</label>
+                            <input type="radio" value="A" name="user_type" id="radio-sample-b"/>
+                            <label for="radio-sample-b">Administrator</label>
                         </div>
                     </div>
 
-                    <div class="input-group responsive m-b-30">
-                        {{ form.first_name.label }}
-                        <div class="input">
-                            {{ form.first_name() }}
-                        </div>
-                    </div>
 
-                     {{ render_field(form.last_name) }}
-
-                    <div class="input-group responsive m-b-30">
-                        {{ form.email.label }}
-                        <div class="input">
-                            {{ form.email() }}
-                        </div>
-                    </div>
-
-                    <div class="input-group responsive m-b-30">
-                        {{ form.DOB.label }}
-                        <div class="input">
-                            {{ form.DOB() }}                </div>
-                    </div>
-
-                    <div class="input-group responsive m-b-30">
-                        {{ form.password.label }}
-                        <div class="input">
-                            {{ form.password() }}
-                        </div>
-                    </div>
-
-                    <div class="input-group responsive m-b-30">
-                        {{ form.password_repeat.label }}
-                        <div class="input">
-                            {{ form.password_repeat() }}
-                        </div>
-                    </div>
-
+                    {{ render_field(form.first_name) }}
+                    {{ render_field(form.last_name) }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.DOB) }}
+                    {{ render_field(form.password) }}
+                    {{ render_field(form.password_repeat) }}
 
                     <div class="input-group responsive m-b-30">
                         {{ form.country.label }}

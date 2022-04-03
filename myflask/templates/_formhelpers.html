@@ -2,14 +2,18 @@
     <div class="input-group responsive m-b-30">
         {{ field.label }}
         <div class="input">
-            {{ field.email() }}
+            {{ field() }}
         </div>
+
     </div>
     {% if field.errors %}
-        <ul class=errors>
-            {% for error in field.errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
+        <div class="input-group responsive m-b-30">
+
+            <label class="is-red-500">
+                {% for error in field.errors %}
+                    *{{ error }}
+                {% endfor %}
+            </label>
+        </div>
     {% endif %}
 {% endmacro %}
