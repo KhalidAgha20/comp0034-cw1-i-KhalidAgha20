@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="alert is-inline has-bg-{{ category }}">
+                <p class="is-bold">{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endwith %}
+
+    <div class="flex h-minus-nav">
+        <div class="tabs is-primary is-vertical hide-tablet-down">
+            <ul>
+                <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
+                <li class="is-active"><a>Login</a></li>
+            </ul>
+        </div>
+
+
+        <div class="overflow-y-auto flex-auto">
+            <div class="container-full m-t-30 m-b-40">
+                <h2>Login</h2>
+
+
+                <br>
+                <form method=post action="{{ url_for('auth.login') }}">
+
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+
+
+
+                    <div class="input-group responsive m-t-40">
+                            <button class="button is-solid m-r-10" type="submit" value="Login">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

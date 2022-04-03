@@ -13,7 +13,7 @@
         <div class="tabs is-primary is-vertical hide-tablet-down">
             <ul>
                 <li class="is-active"><a>Sign Up</a></li>
-                <li><a>Login</a></li>
+                <li ><a href="{{ url_for('auth.login') }}">Login</a></li>
             </ul>
         </div>
 
@@ -328,14 +328,3 @@
 
 
 {% endblock %}
-
-<form method="POST" action="{{ url_for('auth.signup') }}">
-    {{ form.csrf_token }}
-    {{ form.first_name.label }} {{ form.first_name() }} <br>
-    {{ form.last_name.label }} {{ form.last_name() }} <br>
-    {{ form.DOB.label }} {{ form.DOB }} <br>
-    {{ form.email.label }} {{ form.email() }} <br>
-    {{ form.password.label }} {{ form.password() }} <br>
-    {{ form.password_repeat.label }} {{ form.password_repeat() }} <br>
-    <input type="submit" value="Sign up">
-</form>

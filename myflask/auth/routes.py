@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request
 from sqlalchemy.exc import IntegrityError
 
 from myflask import db
-from myflask.auth.forms import SignupForm
+from myflask.auth.forms import SignupForm, LoginForm
 from myflask.models import User
 
 auth_bp = Blueprint('auth', __name__)
@@ -25,3 +25,12 @@ def signup():
             return redirect(url_for('auth.signup'))
         return redirect(url_for('main.index'))
     return render_template('signup.html', title='Sign Up', form=form)
+
+
+@auth_bp.route('/login', methods=['GET', 'POST'])
+def login():
+    login_form = LoginForm()
+    if login_form.validate_on_submit():
+        flash(f"You are logged in as {login_form.email.data}")
+        return redirect(url_for('main.index'))
+    return render_template('login.html', title='Login', form=login_form)
