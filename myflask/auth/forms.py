@@ -13,7 +13,7 @@ class SignupForm(FlaskForm):
     password = PasswordField(label='Password', validators=[DataRequired()])
     password_repeat = PasswordField(label='Confirm Pass',
                                     validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
-    user_type = StringField(label="Account Type", validators=[DataRequired()])
+    user_type = StringField(label="Account Type", validators=[DataRequired(message='Select an Account Type')])
     country = StringField(label='Country', validators=[DataRequired()])
 
     def validate_email(self, email):

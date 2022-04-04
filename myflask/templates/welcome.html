@@ -1,0 +1,44 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/denali.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/denali-dark-theme.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/denali-icon-font/dist/denali-icon-font.css">
+</head>
+
+<body style="background-image: url({{ url_for('static', filename='images/volcanobg.jpg') }});
+        background-position: top;
+        box-shadow:inset 0 0 0 2000px rgba(103,2,2,0.4);">
+<div>
+    <div class="flex p-x-100 p-y-54 flex-column">
+        <div>
+            <p style="text-align:center;">
+                <img src="{{ url_for('static', filename='images/biglogo.png') }}" width="1000"/>
+            </p>
+        </div>
+        <div class="flex justify-content-center align-content-center p-t-50 flex-column">
+            <h5 class="is-white" style="text-align: center"> WELCOME TO THE FREE INTERACTIVE WEBAPP OPEN TO
+                EVERYONE </h5>
+            <br>
+            <h1 class="is-white m-t-10" style="text-align: center"> The Most In-Depth Statistics on Volcanic Eruptions
+                at the Palm of Your Hands </h1>
+            <br>
+            <p class="is-white m-t-10" style="text-align: center"> The Volcanic Eruptions data science software is a top
+                of the line application designed to store data on all the eruptions that occurred throughout history!
+            </p>
+            <p class="is-white m-t-10" style="text-align: center">Whether you are an enthusiast or a professional, this
+                software will provide uou with all that you require and even more.
+            </p>
+            <p class="is-white m-t-10" style="text-align: center"> What are you waiting for create your free account
+                right now or login to your account using the buttons below
+            </p>
+            <div class="flex justify-content-center m-t-20">
+                <button class="button is-solid m-r-10"><a class="is-white" href="{{ url_for('auth.signup') }}">Sign Up</a></button>
+                <button class="button is-red-500 m-r-10"><a class="is-red-500" href="{{ url_for('auth.login') }}">Login</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

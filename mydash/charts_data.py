@@ -17,9 +17,9 @@ class VolcanoData:
         self.import_data()
 
     def import_data(self):
-        volcano_csv = Path(__file__).parent.joinpath('data', 'volcano_list.csv')
-        eruptions_csv = Path(__file__).parent.joinpath('data', 'eruptions_list.csv')
-        iso_csv = Path(__file__).parent.joinpath('data', 'iso.csv')
+        volcano_csv = Path(__file__).parent.parent.joinpath('data', 'volcano_list.csv')
+        eruptions_csv = Path(__file__).parent.parent.joinpath('data', 'eruptions_list.csv')
+        iso_csv = Path(__file__).parent.parent.joinpath('data', 'iso.csv')
         self.volcano = pd.read_csv(volcano_csv)
         self.eruptions = pd.read_csv(eruptions_csv)
         self.iso = pd.read_csv(iso_csv)

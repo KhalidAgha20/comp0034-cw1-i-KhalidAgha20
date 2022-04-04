@@ -8,11 +8,11 @@
             </a>
         </div>
     </div>
-    <div class="nav-responsive" id="navMenuContent">
+    <div class="nav-responsive is-active" id="navMenuContent">
         <div class="nav-center">
             <a class="nav-item is-active" href="{{ url_for('main.index') }}">Home</a>
-            <a class="nav-item" href="{{ url_for('auth.signup') }}">Eruptions Data</a>
-            <a class="nav-item">Contact</a>
+            <a class="nav-item">Eruptions Data</a>
+            <a class="nav-item" href="{{ url_for('auth.signup') }}">Account</a>
         </div>
         <div class="nav-right">
             <div class="menu menu--nav is-right">
@@ -25,19 +25,10 @@
                     <a>Menu Item #3</a>
                 </div>
             </div>
-            <a class="nav-item hide-tablet-down"
-            ><i class="d-icon d-dashboard"></i
-            ><span class="icon-name">Dashboard</span></a
-            >
-            <a class="nav-item"
-            ><i class="d-icon d-menu-dialpad"></i
-            ><span class="icon-name">Apps</span></a
-            >
-            <a class="nav-item"
-            ><i class="d-icon d-user-profile-circle"></i
-            ><span class="icon-name">Profile</span></a
-            >
-            <span class="chips is-bold">Default Chip</span>
+            <a class="nav-item">
+                <i class="d-icon d-user-profile-circle"></i>
+                <span class="icon-name">Profile</span>
+            </a>
         </div>
     </div>
 </nav>
