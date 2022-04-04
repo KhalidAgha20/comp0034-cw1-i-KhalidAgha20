@@ -29,11 +29,14 @@
                     {{ form.csrf_token }}
                     {{ render_field(form.email) }}
                     {{ render_field(form.password) }}
-
+                    <div>
+                        <input  id="remember" name="remember" type="checkbox" value="value1"/>
+                        <label for="remember">{{ form.remember.label }}</label>
+                    </div>
 
 
                     <div class="input-group responsive m-t-40">
-                            <button class="button is-solid m-r-10" type="submit" value="Login">Submit</button>
+                        <button class="button is-solid m-r-10" type="submit" value="Login">Submit</button>
                     </div>
                 </form>
             </div>

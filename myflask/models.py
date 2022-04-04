@@ -1,9 +1,9 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from flask_login import UserMixin
 from myflask import db
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     # __table__ = db.Model.metadata.tables['user']
 
     __tablename__ = "user"

@@ -4,14 +4,14 @@
         <img class="nav-brand" src="{{ url_for('static', filename='images/biglogo.png') }}" alt=""/>
         <div class="float-right hide-small-desktop-up">
             <a class="nav-item" id="navToggle"
-            ><i class="d-icon d-more-vertical"></i
-            ></a>
+            ><i class="d-icon d-more-vertical" ></i>
+            </a>
         </div>
     </div>
-    <div class="nav-responsive">
+    <div class="nav-responsive" id="navMenuContent">
         <div class="nav-center">
             <a class="nav-item is-active" href="{{ url_for('main.index') }}">Home</a>
-            <a class="nav-item" href="{{ url_for('auth.signup') }}">About</a>
+            <a class="nav-item" href="{{ url_for('auth.signup') }}">Eruptions Data</a>
             <a class="nav-item">Contact</a>
         </div>
         <div class="nav-right">
@@ -37,6 +37,7 @@
             ><i class="d-icon d-user-profile-circle"></i
             ><span class="icon-name">Profile</span></a
             >
+            <span class="chips is-bold">Default Chip</span>
         </div>
     </div>
 </nav>
