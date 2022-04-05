@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% from "_formhelpers.html" import render_field %}
+{% set page_name = 'admin_requests' %}
+{% block content %}
+    {% include 'flashmessages.html' %}
+    <div class="flex h-minus-nav">
+        {% include 'sidebar_admin.html' %}
+        <div class="container">
+            <br>
+            <h1 style="text-align: center">Requests to Become an Administrator</h1>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="is-bold">Username</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Country</th>
+                    <th class="is-center">Block</th>
+                    <th class="is-center">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for eachuser in userlist %}
+                    <tr>
+                        {% if eachuser.user_type == 'admin' %}
+                            <td class="is-center"
+                            ><a ><span class="d-icon d-security-verified-solid is-green-600"></span></a
+                            ></td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+
+                        <td><a href="/user/{{ eachuser.username }}">{{ eachuser.username }}</a></td>
+                        <td>{{ eachuser.first_name }} {{ eachuser.last_name }}</td>
+                        <td>{{ eachuser.email }}</td>
+                        <td class="is-mono">{{ eachuser.DOB }}</td>
+                        <td>{{ eachuser.country }}</td>
+                        <td class="is-center"
+                        ><a href="#"><span class="d-icon d-decline is-small"></span></a
+                        ></td>
+                        <td class="is-center"
+                        ><a href="#"><span class="d-icon d-trash is-small is-red-500"></span></a
+                        ></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+{% endblock %}

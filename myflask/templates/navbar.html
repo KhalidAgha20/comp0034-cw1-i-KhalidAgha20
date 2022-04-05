@@ -20,8 +20,8 @@
                     <i class="d-icon d-chart-area"></i> Eruptions Data
                 </a>
                 {% if current_user.user_type == 'admin' %}
-                    <a class="nav-item">
-                        <i class="d-icon d-chart-area"></i> Approval
+                    <a class="nav-item" href="{{ url_for('auth.admin') }}">
+                        <i class="d-icon d-file-edit-solid"></i> Manage Website
                     </a>
                 {% endif %}
             </div>

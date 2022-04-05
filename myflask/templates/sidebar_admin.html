@@ -1,0 +1,7 @@
+<div class="tabs is-primary is-vertical hide-tablet-down">
+    <ul>
+        <li class={% if page_name=='admin' %}"is-active"{% endif %}><a href="{{ url_for('auth.admin') }}">User Management</a></li>
+    <li class={% if page_name=='admin_requests' %}"is-active"{% endif %}><a href="{{ url_for('auth.admin_requests') }}">Admin Requests</a></li>
+        <li class={% if page_name=='change_password' %}"is-active"{% endif %}><a href="{{ url_for('auth.change_password') }}">New Eruptions</a></li>
+    </ul>
+</div>

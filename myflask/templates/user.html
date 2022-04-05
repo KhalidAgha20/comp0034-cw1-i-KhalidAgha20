@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% set page_name = 'user' %}
+{% block content %}
+    {% include 'flashmessages.html' %}
+
+    <div class="flex h-minus-nav">
+        {% include 'sidebar_settings.html' %}
+
+
+        <div class="overflow-y-auto flex-auto">
+            <div class="container-full m-t-30 m-b-40">
+
+                {% if user.user_type == 'admin' %}
+                    <a class="nav-item is-bold is-green-600">
+                        <i class="d-icon d-security-verified-solid"></i> Administrator
+                    </a>
+                {% endif %}
+
+                <div></br></div>
+
+                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+
+                <div></br></div>
+
+                <div class="input-group responsive m-b-30">
+                    <label>Username</label>
+                    <div>
+                        {{ user.username }}
+                    </div>
+                </div>
+
+                <div class="input-group responsive m-b-30">
+                    <label>Email</label>
+                    <div>
+                        {{ user.email }}
+                    </div>
+                </div>
+
+                <div class="input-group responsive m-b-30">
+                    <label>Date of Birth</label>
+                    <div>
+                        {{ user.DOB }}
+                    </div>
+                </div>
+
+                <div class="input-group responsive m-b-30">
+                    <label>Country</label>
+                    <div>
+                        {{ user.country }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

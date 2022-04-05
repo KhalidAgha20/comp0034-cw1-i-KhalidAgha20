@@ -7,7 +7,7 @@ class User(db.Model, UserMixin):
     # __table__ = db.Model.metadata.tables['user']
 
     __tablename__ = "user"
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.Text, nullable=False)
     last_name = db.Column(db.Text, nullable=False)
     DOB = db.Column(db.Date, nullable=False)

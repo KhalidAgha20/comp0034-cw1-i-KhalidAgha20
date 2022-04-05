@@ -17,6 +17,14 @@ def load_user(user_id):
     return None
 
 
+def load_all_users():
+    return User.query.all()
+
+
+def load_admin_requests():
+    return User.query.filter_by(user_type='A')
+
+
 @login_manager.unauthorized_handler
 def unauthorized():
     flash('You must be logged in to view that page.', 'red-100')
@@ -125,3 +133,29 @@ def delete_account():
         flash('Your account has been deleted', 'blue-100')
         return redirect(url_for('auth.login'))
     return render_template('delete_account.html', title='Delete Account', form=form)
+
+
+@auth_bp.route("/admin/user_management")
+@login_required
+def admin():
+    if current_user.user_type == "admin":
+        users = load_all_users()
+        return render_template("admin.html", userlist=users)
+    return redirect(url_for('main.index'))
+
+
+@auth_bp.route("/admin/admin_requests")
+@login_required
+def admin_requests():
+    if current_user.user_type == "admin":
+        users = load_admin_requests()
+        return render_template("admin_requests.html", userlist=users)
+    return redirect(url_for('main.index'))
+
+
+@auth_bp.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template('user.html', user=user)
+
