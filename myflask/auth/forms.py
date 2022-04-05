@@ -33,7 +33,6 @@ class LoginForm(FlaskForm):
     username = StringField(label='Username', validators=[DataRequired()])
     password = PasswordField(label='Password', validators=[DataRequired()])
     remember = BooleanField(label='Remember Me')
-    country = StringField(label='Country', validators=[DataRequired()])
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
@@ -63,10 +62,12 @@ class UpdateForm(FlaskForm):
 class ChangePassword(FlaskForm):
     old_password = PasswordField(label='Old Password', validators=[DataRequired()])
     new_password = PasswordField(label='New Password', validators=[DataRequired()])
-    repeat_password = PasswordField(label='Confirm Pass', validators=[DataRequired(), EqualTo('new_password', message='Passwords must match')])
+    repeat_password = PasswordField(
+        label='Confirm Pass', validators=[DataRequired(), EqualTo('new_password', message='Passwords must match')])
 
     def validate_password(self, old_password):
         user = User.query.filter_by(username=current_user.username).first()
-        if user.check_password(old_password.data) is False:
+        if user is None:
+            return None
+        if not user.check_password(old_password.data):
             raise ValidationError('Incorrect password.')
-
