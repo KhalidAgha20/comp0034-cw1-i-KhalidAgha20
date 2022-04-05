@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, abort
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.exc import IntegrityError
 from urllib.parse import urlparse, urljoin
 from myflask import db, login_manager
-from myflask.auth.forms import SignupForm, LoginForm
+from myflask.auth.forms import SignupForm, LoginForm, UpdateForm, ChangePassword
 from myflask.models import User
 from datetime import timedelta
 
@@ -44,7 +44,8 @@ def signup():
     form = SignupForm(request.form)
     if form.validate_on_submit():
         user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data,
-                    DOB=form.DOB.data, user_type=form.user_type.data, country=form.country.data)
+                    DOB=form.DOB.data, user_type=form.user_type.data, country=form.country.data,
+                    username=form.username.data)
         user.set_password(form.password.data)
         try:
             db.session.add(user)
@@ -62,7 +63,7 @@ def signup():
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        user = User.query.filter_by(email=login_form.email.data).first()
+        user = User.query.filter_by(username=login_form.username.data).first()
         login_user(user, remember=login_form.remember.data, duration=timedelta(minutes=1))
         next = request.args.get('next')
         if not is_safe_url(next):
@@ -70,8 +71,34 @@ def login():
         return redirect(next or url_for('main.index'))
     return render_template('login.html', title='Login', form=login_form)
 
+
 @auth_bp.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('auth.login'))
+
+
+@auth_bp.route('/settings/profile', methods=['GET', 'POST'])
+@login_required
+def update():
+    form = UpdateForm(request.form, obj=current_user)
+    if form.validate_on_submit():
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
+        current_user.email = form.email.data
+        current_user.country = form.country.data
+        db.session.commit()
+        return redirect(url_for('auth.update'))
+    return render_template('update_profile.html', **locals())
+
+
+@auth_bp.route('/settings/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePassword(request.form, obj=current_user)
+    if form.validate_on_submit():
+        current_user.set_password(form.new_password.data)
+        db.session.commit()
+        return redirect(url_for('auth.change_password'))
+    return render_template('change_password.html', **locals())

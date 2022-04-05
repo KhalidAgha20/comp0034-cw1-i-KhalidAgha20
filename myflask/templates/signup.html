@@ -44,8 +44,9 @@
 
                     {{ render_field(form.first_name) }}
                     {{ render_field(form.last_name) }}
-                    {{ render_field(form.email) }}
                     {{ render_field(form.DOB) }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.username) }}
                     {{ render_field(form.password) }}
                     {{ render_field(form.password_repeat) }}
 
@@ -53,6 +54,7 @@
                         {{ form.country.label }}
                         <div class="input has-arrow">
                             <select id="country" name="country" required type="text">
+                                <option value="" disabled selected>Select a country</option>
                                 {% include 'countrylist.html' %}
                             </select>
                         </div>

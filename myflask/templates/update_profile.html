@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% from "_formhelpers.html" import render_field %}
+{% set page_name = 'signup' %}
+{% block content %}
+    {% include 'flashmessages.html' %}
+
+    <div class="flex h-minus-nav">
+        {% include 'sidebar_settings.html' %}
+
+
+        <div class="overflow-y-auto flex-auto">
+            <div class="container-full m-t-30 m-b-40">
+                <h2>Your Profile</h2>
+
+
+                <br>
+                <form method="POST" action="{{ url_for('auth.update') }}">
+
+                    {{ form.csrf_token }}
+
+                    <div class="input-group responsive m-b-30">
+                        <label>Username</label>
+                        <div class="input">
+                            {{ current_user.username }}
+                        </div>
+                    </div>
+
+                    <div class="input-group responsive m-b-30">
+                        <label>Date of Birth</label>
+                        <div class="input">
+                            {{ current_user.DOB }}
+                        </div>
+                    </div>
+
+                    {{ render_field(form.first_name) }}
+                    {{ render_field(form.last_name) }}
+                    {{ render_field(form.email) }}
+
+                    <div class="input-group responsive m-b-30">
+                        {{ form.country.label }}
+                        <div class="input has-arrow">
+                            <select id="country" name="country" required type="text">
+                                <option value="" disabled selected>{{ current_user.country }}</option>
+                                {% include 'countrylist.html' %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group responsive m-t-40">
+                        <button class="button is-solid m-r-10" type="submit" value="Update">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

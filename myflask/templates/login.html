@@ -15,7 +15,7 @@
                 <form method=post action="{{ url_for('auth.login') }}">
 
                     {{ form.csrf_token }}
-                    {{ render_field(form.email) }}
+                    {{ render_field(form.username) }}
                     {{ render_field(form.password) }}
                     <div>
                         <input id="remember" name="remember" type="checkbox" value="value1"/>

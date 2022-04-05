@@ -1,6 +1,6 @@
 <div class="tabs is-primary is-vertical hide-tablet-down">
     <ul>
-        <li class={% if page_name=='signup' %}"is-active"{% endif %}><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
         <li class={% if page_name=='login' %}"is-active"{% endif %}><a href="{{ url_for('auth.login') }}">Login</a></li>
+        <li class={% if page_name=='signup' %}"is-active"{% endif %}><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
     </ul>
 </div>

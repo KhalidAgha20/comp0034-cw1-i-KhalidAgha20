@@ -4,31 +4,29 @@
         <img class="nav-brand" src="{{ url_for('static', filename='images/biglogo.png') }}" alt=""/>
         <div class="float-right hide-small-desktop-up">
             <a class="nav-item" id="navToggle"
-            ><i class="d-icon d-more-vertical" ></i>
+            ><i class="d-icon d-more-vertical"></i>
             </a>
         </div>
     </div>
-    <div class="nav-responsive is-active" id="navMenuContent">
-        <div class="nav-center">
-            <a class="nav-item is-active" href="{{ url_for('main.index') }}">Home</a>
-            <a class="nav-item">Eruptions Data</a>
-            <a class="nav-item" href="{{ url_for('auth.signup') }}">Account</a>
-        </div>
-        <div class="nav-right">
-            <div class="menu menu--nav is-right">
-                <div class="nav-item menu-trigger"
-                >Menu<i class="d-icon d-arrowhead-down is-small"></i
-                ></div>
-                <div class="menu-content">
-                    <a>Menu Item #1</a>
-                    <a>Menu Item #2</a>
-                    <a>Menu Item #3</a>
+    {% if current_user.is_anonymous %}
+        <div></div>
+    {% else %}
+        <div class="nav-responsive is-active" id="navMenuContent">
+            <div class="nav-center">
+                <a class="nav-item is-active" href="{{ url_for('main.index') }}">Home</a>
+                <a class="nav-item">Eruptions Data</a>
+            </div>
+            <div class="nav-right">
+                <div class="menu menu--nav is-right">
+                    <div class="nav-item menu-trigger"
+                    >{{ current_user.first_name }} <i class="d-icon d-user-profile-circle"></i>
+                    </div>
+                    <div class="menu-content">
+                        <a href="{{ url_for('auth.update') }}">Account Settings</a>
+                        <a href="{{ url_for('auth.logout') }}">Logout</a>
+                    </div>
                 </div>
             </div>
-            <a class="nav-item">
-                <i class="d-icon d-user-profile-circle"></i>
-                <span class="icon-name">Profile</span>
-            </a>
         </div>
-    </div>
+    {% endif %}
 </nav>

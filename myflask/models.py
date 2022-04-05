@@ -12,13 +12,14 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.Text, nullable=False)
     DOB = db.Column(db.Date, nullable=False)
     email = db.Column(db.Text, unique=True, nullable=False)
+    username = db.Column(db.Text, unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
     user_type = db.Column(db.Text, nullable=False)
     country = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f"{self.id} {self.first_name} {self.last_name} {self.DOB} {self.email} {self.password} {self.country}" \
-               f"{self.user_type}"
+        return f"{self.id} {self.first_name} {self.last_name} {self.DOB} {self.email} {self.username} {self.password} \
+        {self.country} {self.user_type}"
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
