@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% from "_formhelpers.html" import render_field %}
-{% set page_name = 'signup' %}
+{% set page_name = 'profile' %}
 {% block content %}
     {% include 'flashmessages.html' %}
 
@@ -11,9 +11,7 @@
         <div class="overflow-y-auto flex-auto">
             <div class="container-full m-t-30 m-b-40">
                 <h2>Your Profile</h2>
-
-
-                <br>
+                <br><br>
                 <form method="POST" action="{{ url_for('auth.update') }}">
 
                     {{ form.csrf_token }}
@@ -40,7 +38,7 @@
                         {{ form.country.label }}
                         <div class="input has-arrow">
                             <select id="country" name="country" required type="text">
-                                <option value="" disabled selected>{{ current_user.country }}</option>
+                                <option value="{{ current_user.country }}">{{ current_user.country }}</option>
                                 {% include 'countrylist.html' %}
                             </select>
                         </div>

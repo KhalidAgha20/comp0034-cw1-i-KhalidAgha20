@@ -1,7 +1,7 @@
 <div class="tabs is-primary is-vertical hide-tablet-down">
     <ul>
-        <li class={% if page_name=='signup' %}"is-active"{% endif %}><a href="{{ url_for('auth.update') }}">Profile</a></li>
-        <li class={% if page_name=='login' %}"is-active"{% endif %}><a href="{{ url_for('auth.change_password') }}">Change Password</a></li>
-        <li class={% if page_name=='login' %}"is-active"{% endif %}><a href="{{ url_for('auth.update') }}">Delete Account</a></li
+        <li class={% if page_name=='profile' %}"is-active"{% endif %}><a href="{{ url_for('auth.update') }}">Profile</a></li>
+        <li class={% if page_name=='change_password' %}"is-active"{% endif %}><a href="{{ url_for('auth.change_password') }}">Change Password</a></li>
+        <li class={% if page_name=='delete_account' %}"is-active"{% endif %}><a href="{{ url_for('auth.delete_account') }}">Delete Account</a></li>
     </ul>
 </div>

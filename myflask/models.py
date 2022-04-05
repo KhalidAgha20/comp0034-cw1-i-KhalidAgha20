@@ -7,7 +7,7 @@ class User(db.Model, UserMixin):
     # __table__ = db.Model.metadata.tables['user']
 
     __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.Text, nullable=False)
     last_name = db.Column(db.Text, nullable=False)
     DOB = db.Column(db.Date, nullable=False)
@@ -26,3 +26,6 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+
+

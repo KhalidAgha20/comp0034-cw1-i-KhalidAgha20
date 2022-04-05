@@ -60,14 +60,19 @@ class UpdateForm(FlaskForm):
 
 
 class ChangePassword(FlaskForm):
-    old_password = PasswordField(label='Old Password', validators=[DataRequired()])
+    password = PasswordField(label='Old Password', validators=[DataRequired()])
     new_password = PasswordField(label='New Password', validators=[DataRequired()])
     repeat_password = PasswordField(
         label='Confirm Pass', validators=[DataRequired(), EqualTo('new_password', message='Passwords must match')])
 
-    def validate_password(self, old_password):
-        user = User.query.filter_by(username=current_user.username).first()
-        if user is None:
-            return None
-        if not user.check_password(old_password.data):
+    def validate_password(self, password):
+        if not current_user.check_password(password.data):
+            raise ValidationError('Incorrect password.')
+
+
+class DeleteAccount(FlaskForm):
+    password = PasswordField(label='Password', validators=[DataRequired()])
+
+    def validate_password(self, password):
+        if not current_user.check_password(password.data):
             raise ValidationError('Incorrect password.')

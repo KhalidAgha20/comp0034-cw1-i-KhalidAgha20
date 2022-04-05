@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% from "_formhelpers.html" import render_field %}
-{% set page_name = 'change_password' %}
+{% set page_name = 'delete_account' %}
 {% block content %}
     {% include 'flashmessages.html' %}
 
@@ -10,22 +10,18 @@
 
         <div class="overflow-y-auto flex-auto">
             <div class="container-full m-t-30 m-b-40">
-                <h2>Update Your Password</h2>
+                <h2>Delete Account?</h2>
                 <br><br>
 
-                <form method="POST" action="{{ url_for('auth.change_password') }}">
+                <form method="POST" action="{{ url_for('auth.delete_account') }}">
 
                     {{ form.csrf_token }}
 
                     {{ render_field(form.password) }}
-                    <br><br>
-                    {{ render_field(form.new_password) }}
-                    {{ render_field(form.repeat_password) }}
-
 
 
                     <div class="input-group responsive m-t-40">
-                        <button class="button is-solid m-r-10" type="submit" value="Change Password">Submit</button>
+                        <button class="button is-solid m-r-10" type="submit" value="Delete Account">Delete Account</button>
                     </div>
                 </form>
             </div>

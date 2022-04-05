@@ -13,10 +13,28 @@
     {% else %}
         <div class="nav-responsive is-active" id="navMenuContent">
             <div class="nav-center">
-                <a class="nav-item is-active" href="{{ url_for('main.index') }}">Home</a>
-                <a class="nav-item">Eruptions Data</a>
+                <a class="nav-item is-active" href="{{ url_for('main.index') }}">
+                    <i class="d-icon d-home-solid"></i> Home
+                </a>
+                <a class="nav-item">
+                    <i class="d-icon d-chart-area"></i> Eruptions Data
+                </a>
+                {% if current_user.user_type == 'admin' %}
+                    <a class="nav-item">
+                        <i class="d-icon d-chart-area"></i> Approval
+                    </a>
+                {% endif %}
             </div>
             <div class="nav-right">
+                {% if current_user.user_type == 'admin' %}
+                    <a class="nav-item is-bold is-green-500">
+                        <i class="d-icon d-security-verified-solid"></i> Administrator
+                    </a>
+                {% elif current_user.user_type == 'A' %}
+                    <a class="nav-item is-bold is-yellow-500">
+                        <i class="d-icon d-security-verified-solid"></i> Admin Status Pending Approval
+                    </a>
+                {% endif %}
                 <div class="menu menu--nav is-right">
                     <div class="nav-item menu-trigger"
                     >{{ current_user.first_name }} <i class="d-icon d-user-profile-circle"></i>
