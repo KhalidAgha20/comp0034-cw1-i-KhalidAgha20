@@ -22,12 +22,12 @@
                         {{ form.user_type.label }}
                         <div class="radio m-r-20">
                             <input type="radio" value="C" name="user_type" id="radio-sample-a"/>
-                            <label for="radio-sample-a">Customer</label>
+                            <label for="radio-sample-a">Basic</label>
                         </div>
                         <br>
                         <div class="radio">
                             <input type="radio" value="A" name="user_type" id="radio-sample-b"/>
-                            <label for="radio-sample-b">Administrator</label>
+                            <label for="radio-sample-b">Administrator (Subject to approval from current admins)</label>
                         </div>
                     </div>
                     {% if form.user_type.errors %}
