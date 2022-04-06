@@ -159,3 +159,34 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     return render_template('user.html', user=user)
 
+@auth_bp.route('/user/<username>/delete')
+@login_required
+def user_delete(username):
+    if current_user.user_type == "admin":
+        user = User.query.filter_by(username=username).first()
+        db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for('auth.admin'))
+    return redirect(url_for('main.index'))
+
+
+@auth_bp.route('/user/<username>/make_admin')
+@login_required
+def make_admin(username):
+    if current_user.user_type == "admin":
+        user = User.query.filter_by(username=username).first()
+        user.user_type = 'admin'
+        db.session.commit()
+        return redirect(url_for('auth.admin_requests'))
+    return redirect(url_for('main.index'))
+
+@auth_bp.route('/user/<username>/reject_request')
+@login_required
+def reject_request(username):
+    if current_user.user_type == "admin":
+        user = User.query.filter_by(username=username).first()
+        user.user_type = 'C'
+        db.session.commit()
+        return redirect(url_for('auth.admin_requests'))
+    return redirect(url_for('main.index'))
+

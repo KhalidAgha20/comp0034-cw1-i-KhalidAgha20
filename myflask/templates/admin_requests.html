@@ -18,8 +18,8 @@
                     <th>Email</th>
                     <th>Date of Birth</th>
                     <th>Country</th>
-                    <th class="is-center">Block</th>
-                    <th class="is-center">Delete</th>
+                    <th class="is-center">Approve</th>
+                    <th class="is-center">Reject</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,7 +27,7 @@
                     <tr>
                         {% if eachuser.user_type == 'admin' %}
                             <td class="is-center"
-                            ><a ><span class="d-icon d-security-verified-solid is-green-600"></span></a
+                            ><a><span class="d-icon d-security-verified-solid is-green-600"></span></a
                             ></td>
                         {% else %}
                             <td></td>
@@ -39,10 +39,10 @@
                         <td class="is-mono">{{ eachuser.DOB }}</td>
                         <td>{{ eachuser.country }}</td>
                         <td class="is-center"
-                        ><a href="#"><span class="d-icon d-decline is-small"></span></a
+                        ><a href="/user/{{ eachuser.username }}/make_admin"><span class="d-icon d-check-circle is-small is-blue-500"></span></a
                         ></td>
                         <td class="is-center"
-                        ><a href="#"><span class="d-icon d-trash is-small is-red-500"></span></a
+                        ><a href="/user/{{ eachuser.username }}/reject_request"><span class="d-icon d-decline is-small is-red-500"></span></a
                         ></td>
                     </tr>
                 {% endfor %}

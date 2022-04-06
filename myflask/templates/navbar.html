@@ -3,17 +3,48 @@
 
         <img class="nav-brand" src="{{ url_for('static', filename='images/biglogo.png') }}" alt=""/>
         <div class="float-right hide-small-desktop-up">
-            <a class="nav-item" id="navToggle"
-            ><i class="d-icon d-more-vertical"></i>
+            {% if current_user.is_anonymous %}
+            <div></div>
+            {% else %}
+            <a class="nav-item" href="{{ url_for('main.index') }}">
+                <i class="d-icon d-home-solid"></i>
             </a>
+            <a class="nav-item">
+                <i class="d-icon d-chart-area"></i>
+            </a>
+            {% if current_user.user_type == 'admin' %}
+                <a class="nav-item" href="{{ url_for('auth.admin') }}">
+                    <i class="d-icon d-file-edit-solid"></i>
+                </a>
+            {% endif %}
+            {% if current_user.user_type == 'admin' %}
+                <a class="nav-item is-bold is-green-500">
+                    <i class="d-icon d-security-verified-solid"></i>
+                </a>
+            {% elif current_user.user_type == 'A' %}
+                <a class="nav-item is-bold is-yellow-500">
+                    <i class="d-icon d-security-verified-solid"></i>
+                </a>
+            {% endif %}
+
+            <div class="menu menu--nav is-right">
+                <div class="nav-item menu-trigger"
+                ><i class="d-icon d-user-profile-circle"></i>
+                </div>
+                <div class="menu-content">
+                    <a href="{{ url_for('auth.update') }}">Account Settings</a>
+                    <a href="{{ url_for('auth.logout') }}">Logout</a>
+                </div>
+            </div>
+        {% endif %}
         </div>
     </div>
     {% if current_user.is_anonymous %}
         <div></div>
     {% else %}
-        <div class="nav-responsive is-active" id="navMenuContent">
+        <div class="nav-responsive" id="navMenuContent">
             <div class="nav-center">
-                <a class="nav-item is-active" href="{{ url_for('main.index') }}">
+                <a class="nav-item" href="{{ url_for('main.index') }}">
                     <i class="d-icon d-home-solid"></i> Home
                 </a>
                 <a class="nav-item">
@@ -28,11 +59,11 @@
             <div class="nav-right">
                 {% if current_user.user_type == 'admin' %}
                     <a class="nav-item is-bold is-green-500">
-                        <i class="d-icon d-security-verified-solid"></i> Administrator
+                        <i class="d-icon d-security-verified-solid"></i> Admin
                     </a>
                 {% elif current_user.user_type == 'A' %}
                     <a class="nav-item is-bold is-yellow-500">
-                        <i class="d-icon d-security-verified-solid"></i> Admin Status Pending Approval
+                        <i class="d-icon d-security-verified-solid"></i> Pending
                     </a>
                 {% endif %}
                 <div class="menu menu--nav is-right">

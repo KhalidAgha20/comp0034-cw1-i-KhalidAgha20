@@ -7,7 +7,7 @@
         {% include 'sidebar_admin.html' %}
         <div class="container">
             <br>
-            <h1 style="text-align: center">Requests to Become an Administrator</h1>
+            <h1 style="text-align: center">User Management</h1>
             <br>
             <table class="table">
                 <thead>
@@ -18,7 +18,6 @@
                     <th>Email</th>
                     <th>Date of Birth</th>
                     <th>Country</th>
-                    <th class="is-center">Block</th>
                     <th class="is-center">Delete</th>
                 </tr>
                 </thead>
@@ -39,10 +38,7 @@
                         <td class="is-mono">{{ eachuser.DOB }}</td>
                         <td>{{ eachuser.country }}</td>
                         <td class="is-center"
-                        ><a href="#"><span class="d-icon d-decline is-small"></span></a
-                        ></td>
-                        <td class="is-center"
-                        ><a href="#"><span class="d-icon d-trash is-small is-red-500"></span></a
+                        ><a href="/user/{{ eachuser.username }}/delete"><span class="d-icon d-trash is-small is-red-500"></span></a
                         ></td>
                     </tr>
                 {% endfor %}
