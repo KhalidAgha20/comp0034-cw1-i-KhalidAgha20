@@ -16,7 +16,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = True
 
-    DATA_PATH = pathlib.Path(__file__).parent.parent
+    DATA_PATH = pathlib.Path(__file__).parent.parent.joinpath("data")
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + str(DATA_PATH.joinpath('myflask.sqlite'))
 
 
@@ -26,6 +26,3 @@ class TestingConfig(Config):
     SQLALCHEMY_ECHO = True
 
 
-x = pathlib.Path(__file__).parent.parent.joinpath("data")
-print(x)
-print('sqlite:///' + str(x.joinpath('myflask.sqlite')))

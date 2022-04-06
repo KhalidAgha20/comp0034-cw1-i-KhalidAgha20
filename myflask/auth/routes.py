@@ -7,7 +7,6 @@ from myflask.auth.forms import SignupForm, LoginForm, UpdateForm, ChangePassword
 from myflask.models import User
 from datetime import timedelta
 import uuid, os, PIL
-from werkzeug.utils import secure_filename
 from pathlib import Path
 
 auth_bp = Blueprint('auth', __name__)

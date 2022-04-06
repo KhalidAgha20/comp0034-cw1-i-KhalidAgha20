@@ -55,8 +55,9 @@ def create_app(config_class_name):
     register_dash_apps(app)
 
     with app.app_context():
-        from myflask.models import User
-        db.create_all()
+        # from myflask.models import User
+        db.Model.metadata.reflect(bind=db.engine)
+        # db.create_all()
 
     from myflask.auth.routes import auth_bp
     app.register_blueprint(auth_bp)

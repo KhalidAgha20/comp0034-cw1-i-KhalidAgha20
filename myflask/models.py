@@ -4,8 +4,9 @@ from myflask import db
 
 
 class User(db.Model, UserMixin):
-    # __table__ = db.Model.metadata.tables['user']
+    __table__ = db.Model.metadata.tables['user']
 
+    '''
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(25), nullable=False)
@@ -17,6 +18,7 @@ class User(db.Model, UserMixin):
     user_type = db.Column(db.Text, nullable=False)
     country = db.Column(db.Text, nullable=False)
     profile_pic = db.Column(db.String, nullable=False)
+    '''
 
     def __repr__(self):
         return f"{self.id} {self.first_name} {self.last_name} {self.DOB} {self.email} {self.username} {self.password} \
