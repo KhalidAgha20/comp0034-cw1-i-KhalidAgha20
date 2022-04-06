@@ -8,7 +8,7 @@ import mydash.create_charts as CC
 data = VolcanoData()
 data.process_data_for_choropleth()
 cc = CC.MapBox(data)
-fig1 = cc.create_mapbox("Algeria")
+fig8 = cc.create_mapbox("Algeria")
 
 layout = dbc.Container(fluid=True, children=[
     dbc.Row([
@@ -39,7 +39,7 @@ layout = dbc.Container(fluid=True, children=[
         ])
     ]),
     dcc.Graph(id="mapbox",
-              figure=fig1)
+              figure=fig8)
 ])
 
 
@@ -48,5 +48,5 @@ layout = dbc.Container(fluid=True, children=[
     Input('country-dropdown', 'value')
 )
 def update_mapbox(value):
-    fig1 = cc.create_mapbox(value)
-    return fig1
+    fig8 = cc.create_mapbox(value)
+    return fig8

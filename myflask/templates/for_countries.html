@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% set page_name = 'for_countries' %}
+{% block content %}
+    {% include 'flashmessages.html' %}
+
+
+    <div class="flex h-minus-nav">
+        {% include 'sidebar_eruptions.html' %}
+
+
+        <iframe src="{{ url_for('main.dash_app3') }}" title="description" width="100%"></iframe>
+
+    </div>
+{% endblock %}

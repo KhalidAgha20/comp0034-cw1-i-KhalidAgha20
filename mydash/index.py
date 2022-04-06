@@ -26,7 +26,7 @@ navbar = dbc.Navbar(
                 dbc.Row(
                     [
                         dbc.Col(html.Img(src=PLOTLY_LOGO, height="30px")),
-                        dbc.Col(dbc.NavbarBrand("VOLCANIC ERUPTION STATISTICS", className="ms-2")),
+                        dbc.Col(dbc.NavbarBrand("VOLCANIC ERUPTIONS", className="ms-2")),
                     ],
                     align="center",
                     className="g-0",
@@ -54,7 +54,7 @@ index_layout = dbc.Container([
     html.Div([
         html.Br(),
         html.Img(src=PLOTLY_LOGO, height="300px"),
-        html.H1("VOLCANIC ERUPTION STATISTICS")
+        html.H1("VOLCANIC ERUPTIONS")
     ], style={'textAlign': 'center'}),
     html.Br(),
     dbc.Row([

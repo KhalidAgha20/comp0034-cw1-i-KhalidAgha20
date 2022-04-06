@@ -9,7 +9,7 @@ data = VolcanoData()
 data.process_data_for_circular_bar()
 
 pp = CC.PolarPlot(data)
-fig1 = pp.create_polar('POP_5')
+fig9 = pp.create_polar('POP_5')
 
 layout = html.Div(children=[
     html.Br(),
@@ -31,7 +31,7 @@ layout = html.Div(children=[
         dbc.Col(width=9, children=[
             dcc.Graph(
                 id='polar-plot',
-                figure=fig1,
+                figure=fig9,
             )
         ]),
 
@@ -64,5 +64,5 @@ layout = html.Div(children=[
     Input('slider', 'value')
 )
 def update_polar(value):
-    fig1 = pp.create_polar('POP_{}'.format(value))
-    return fig1
+    fig9 = pp.create_polar(f'POP_{value}')
+    return fig9

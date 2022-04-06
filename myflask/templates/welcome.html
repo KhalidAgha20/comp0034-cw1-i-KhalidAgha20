@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/denali-dark-theme.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/denali-icon-font/dist/denali-icon-font.css">
     <title>{{ title }}</title>
+    <link rel="fav icon" href="static/images/logo.png">
 </head>
 
 <body style="background-image: url({{ url_for('static', filename='images/volcanobg.jpg') }});
@@ -16,7 +17,7 @@
     <div class="flex p-x-100 p-y-54 flex-column">
         <div>
             <p style="text-align:center;">
-                <img src="{{ url_for('static', filename='images/biglogo.png') }}" width="1000"/>
+                <img src="{{ url_for('static', filename='images/biglogo.png') }}" width="1000" alt=""/>
             </p>
         </div>
         <br><br><br><br>

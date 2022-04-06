@@ -62,7 +62,10 @@ def signup():
             if user.user_type == 'C':
                 flash(f"Hello, {user.first_name}. You have successfully signed up.", 'green-100')
             else:
-                flash(f"Hello, {user.first_name}. You have successfully signed up and your role as an administrator is pending approval", 'yellow-100')
+                flash(
+                    f"Hello, {user.first_name}. You have successfully signed up and your role as an administrator is "
+                    f"pending approval",
+                    'yellow-100')
         except IntegrityError:
             db.session.rollback()
             flash(f'Error, unable to register {form.email.data}. ', 'red-100')
@@ -140,7 +143,7 @@ def delete_account():
 def admin():
     if current_user.user_type == "admin":
         users = load_all_users()
-        return render_template("admin.html", userlist=users)
+        return render_template("admin.html", title='User Management', userlist=users)
     return redirect(url_for('main.index'))
 
 
@@ -149,7 +152,7 @@ def admin():
 def admin_requests():
     if current_user.user_type == "admin":
         users = load_admin_requests()
-        return render_template("admin_requests.html", userlist=users)
+        return render_template("admin_requests.html", title='Admin Requests', userlist=users)
     return redirect(url_for('main.index'))
 
 
@@ -158,6 +161,7 @@ def admin_requests():
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     return render_template('user.html', user=user)
+
 
 @auth_bp.route('/user/<username>/delete')
 @login_required
@@ -180,6 +184,7 @@ def make_admin(username):
         return redirect(url_for('auth.admin_requests'))
     return redirect(url_for('main.index'))
 
+
 @auth_bp.route('/user/<username>/reject_request')
 @login_required
 def reject_request(username):
@@ -189,4 +194,3 @@ def reject_request(username):
         db.session.commit()
         return redirect(url_for('auth.admin_requests'))
     return redirect(url_for('main.index'))
-

@@ -38,12 +38,8 @@
                         <td>{{ eachuser.email }}</td>
                         <td class="is-mono">{{ eachuser.DOB }}</td>
                         <td>{{ eachuser.country }}</td>
-                        <td class="is-center"
-                        ><a href="/user/{{ eachuser.username }}/make_admin"><span class="d-icon d-check-circle is-small is-blue-500"></span></a
-                        ></td>
-                        <td class="is-center"
-                        ><a href="/user/{{ eachuser.username }}/reject_request"><span class="d-icon d-decline is-small is-red-500"></span></a
-                        ></td>
+                        <td class="is-center"><a href="/user/{{ eachuser.username }}/make_admin"><span class="d-icon d-check-circle is-small is-blue-500"></span></a></td>
+                        <td class="is-center"><a href="/user/{{ eachuser.username }}/reject_request"><span class="d-icon d-decline is-small is-red-500"></span></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

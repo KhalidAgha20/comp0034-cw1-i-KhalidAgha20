@@ -1,15 +1,21 @@
 {% extends "layout.html" %}
 {% from "_formhelpers.html" import render_field %}
 {% set page_name = 'admin' %}
+
 {% block content %}
     {% include 'flashmessages.html' %}
+
     <div class="flex h-minus-nav">
+
         {% include 'sidebar_admin.html' %}
+
         <div class="container">
             <br>
             <h1 style="text-align: center">User Management</h1>
             <br>
             <table class="table">
+
+
                 <thead>
                 <tr>
                     <th></th>
@@ -21,12 +27,14 @@
                     <th class="is-center">Delete</th>
                 </tr>
                 </thead>
+
+
                 <tbody>
                 {% for eachuser in userlist %}
                     <tr>
                         {% if eachuser.user_type == 'admin' %}
                             <td class="is-center"
-                            ><a ><span class="d-icon d-security-verified-solid is-green-600"></span></a
+                            ><a><span class="d-icon d-security-verified-solid is-green-600"></span></a
                             ></td>
                         {% else %}
                             <td></td>
@@ -37,12 +45,20 @@
                         <td>{{ eachuser.email }}</td>
                         <td class="is-mono">{{ eachuser.DOB }}</td>
                         <td>{{ eachuser.country }}</td>
-                        <td class="is-center"
-                        ><a href="/user/{{ eachuser.username }}/delete"><span class="d-icon d-trash is-small is-red-500"></span></a
-                        ></td>
+                        {% if eachuser.user_type == 'admin' %}
+                            <td></td>
+                        {% else %}
+                            <td class="is-center">
+                                <a href="/user/{{ eachuser.username }}/delete">
+                                    <span class="d-icon d-trash is-small is-red-500"></span>
+                                </a>
+                            </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>
+
+
             </table>
         </div>
 

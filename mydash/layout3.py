@@ -1,0 +1,67 @@
+import dash_bootstrap_components as dbc
+from dash import dcc, html, Input, Output, Dash
+
+from mydash.charts_data import VolcanoData
+import mydash.create_charts as CC
+
+data = VolcanoData()
+data.process_data_for_choropleth()
+cc = CC.MapBox(data)
+fig8 = cc.create_mapbox("Algeria")
+
+
+class DashApp3:
+    def __init__(self, flask_server):
+        self.app = Dash(name=self.__class__.__name__, routes_pathname_prefix='/dash_app3/',
+                        suppress_callback_exceptions=True, server=flask_server,
+                        external_stylesheets=[dbc.themes.BOOTSTRAP],
+                        meta_tags=[{
+                            'name': 'viewport',
+                            'content': 'width=device-width, initial-scale=1.0'
+                        }])
+
+    def setup(self):
+        self.setup_layout()
+        self.setup_callbacks()
+
+    def setup_layout(self):
+        self.app.layout = dbc.Container(fluid=True, children=[
+            dbc.Row([
+                dbc.Col(width=1),
+
+                dbc.Col(children=[
+                    html.Br(),
+
+                    html.H1(children='Data for Individual Countries'),
+
+                    html.P(
+                        children="Geographical locations of volcanoes and their number of eruptions is computed for "
+                                 "individual countries. Please note that, in this Web App , a country and its overseas "
+                                 "territories are considered as one.")
+                ]),
+
+                dbc.Col(width=1)
+            ]),
+
+            html.Br(),
+            dbc.Row([
+                dbc.Col(width=1),
+                dbc.Col(width=3, children=[
+                    html.H6("Select Country"),
+                    dcc.Dropdown(data.v_countries,
+                                 id="country-dropdown",
+                                 value="Algeria")
+                ])
+            ]),
+            dcc.Graph(id="mapbox",
+                      figure=fig8)
+        ])
+
+    def setup_callbacks(self):
+        @self.app.callback(
+            Output('mapbox', 'figure'),
+            Input('country-dropdown', 'value')
+        )
+        def update_mapbox(value):
+            fig8 = cc.create_mapbox(value)
+            return fig8

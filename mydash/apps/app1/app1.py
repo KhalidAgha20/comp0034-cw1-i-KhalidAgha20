@@ -8,14 +8,14 @@ import mydash.create_charts as CC
 data = VolcanoData()
 data.process_data_for_choropleth()
 cc = CC.Choropleth(data)
-fig1 = cc.create_choropleth("VOLCANO")
-fig2 = cc.create_choropleth("ERUPTIONS")
-fig3 = cc.create_choropleth("RATIO")
+fig2 = cc.create_choropleth("VOLCANO")
+fig3 = cc.create_choropleth("ERUPTIONS")
+fig4 = cc.create_choropleth("RATIO")
 
 bc = CC.BarGraph(data)
-fig4 = bc.creat_bar_graph("VOLCANO")
-fig5 = bc.creat_bar_graph("ERUPTIONS")
-fig6 = bc.creat_bar_graph("RATIO")
+fig5 = bc.creat_bar_graph("VOLCANO")
+fig6 = bc.creat_bar_graph("ERUPTIONS")
+fig7 = bc.creat_bar_graph("RATIO")
 
 layout = dbc.Container(fluid=True, children=[
     dbc.Row([
@@ -44,10 +44,10 @@ layout = dbc.Container(fluid=True, children=[
             dbc.Tabs(children=[
                 dbc.Tab(dbc.Row([
                     dbc.Col(width=4, children=[
-                        dcc.Graph(id="volcano-top10", figure=fig4)
+                        dcc.Graph(id="volcano-top10", figure=fig5)
                     ]),
                     dbc.Col(width=8, children=[
-                        dcc.Graph(id="volcano-choropleth", figure=fig1)
+                        dcc.Graph(id="volcano-choropleth", figure=fig2)
                     ])
                 ]),
                     label="Number Of Volcanoes"
@@ -55,20 +55,20 @@ layout = dbc.Container(fluid=True, children=[
 
                 dbc.Tab(dbc.Row([
                     dbc.Col(width=4, children=[
-                        dcc.Graph(id="eruption-top10", figure=fig5)
+                        dcc.Graph(id="eruption-top10", figure=fig6)
                     ]),
                     dbc.Col(width=8, children=[
-                        dcc.Graph(id="eruption-choropleth", figure=fig2)
+                        dcc.Graph(id="eruption-choropleth", figure=fig3)
                     ])
                 ]),
                     label="Number Of Eruptions", ),
 
                 dbc.Tab(dbc.Row([
                     dbc.Col(width=4, children=[
-                        dcc.Graph(id="ratio-top10", figure=fig6)
+                        dcc.Graph(id="ratio-top10", figure=fig7)
                     ]),
                     dbc.Col(width=8, children=[
-                        dcc.Graph(id="ratio-choropleth", figure=fig3)
+                        dcc.Graph(id="ratio-choropleth", figure=fig4)
                     ])
                 ]),
                     label="Ratio of Eruptions to Volcanoes", )

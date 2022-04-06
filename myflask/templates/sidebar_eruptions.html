@@ -1,0 +1,8 @@
+<div class="tabs is-primary is-vertical hide-tablet-down">
+    <ul>
+        <li class={% if page_name=='eruption_numbers' %}"is-active"{% endif %}><a href="{{ url_for('main.eruption_numbers') }}">Volcanoes on the World Map</a></li>
+        <li class={% if page_name=='yearly_data' %}"is-active"{% endif %}><a href="{{ url_for('main.yearly_data') }}">Yearly Data</a></li>
+        <li class={% if page_name=='for_countries' %}"is-active"{% endif %}><a href="{{ url_for('main.for_countries') }}">Data for Individual Countries</a></li>
+        <li class={% if page_name=='population' %}"is-active"{% endif %}><a href="{{ url_for('main.population') }}">Risk to the Population</a></li>
+    </ul>
+</div>

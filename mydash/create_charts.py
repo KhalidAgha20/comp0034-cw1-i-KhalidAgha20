@@ -1,4 +1,3 @@
-import plotly.graph_objs as go
 import plotly.express as px
 import numpy as np
 
@@ -76,7 +75,7 @@ class MapBox:
 
     def create_mapbox(self, country):
         df = self.data.volcano.loc[self.data.volcano["COUNTRY"] == country]
-        px.set_mapbox_access_token(open(".mapbox_token").read())
+        px.set_mapbox_access_token(open("mydash/.mapbox_token").read())
         fig = px.scatter_mapbox(df,
                                 lat="LATITUDE",
                                 lon="LONGITUDE",
@@ -95,7 +94,7 @@ class MapBox:
 
     def homegraph(self):
         df = self.data.eruptions.head(20)
-        px.set_mapbox_access_token(open(".mapbox_token").read())
+        px.set_mapbox_access_token(open("mydash/.mapbox_token").read())
         fig = px.scatter_mapbox(df,
                                 lat="Latitude",
                                 lon="Longitude",

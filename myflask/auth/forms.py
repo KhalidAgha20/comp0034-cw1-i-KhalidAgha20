@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from numpy.ma import count
 from wtforms import StringField, PasswordField, EmailField, DateField, BooleanField
-from wtforms.validators import DataRequired, EqualTo, ValidationError
+from wtforms.validators import DataRequired, EqualTo, ValidationError, length
 from flask_login import current_user
 from myflask.models import User
 
@@ -27,6 +27,10 @@ class SignupForm(FlaskForm):
         users = User.query.filter_by(username=username.data).first()
         if users is not None:
             raise ValidationError('The username is already taken')
+
+    def validate_password(self, password):
+        if len(password.data) < 8:
+            raise ValidationError('Make sure your password is at least 8 characters')
 
 
 class LoginForm(FlaskForm):
@@ -68,6 +72,10 @@ class ChangePassword(FlaskForm):
     def validate_password(self, password):
         if not current_user.check_password(password.data):
             raise ValidationError('Incorrect password.')
+
+    def validate_new_password(self, new_password):
+        if len(new_password.data) < 8:
+            raise ValidationError('Make sure your password is at least 8 characters')
 
 
 class DeleteAccount(FlaskForm):
