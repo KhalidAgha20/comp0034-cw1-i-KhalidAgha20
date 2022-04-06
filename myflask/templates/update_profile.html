@@ -11,8 +11,10 @@
         <div class="overflow-y-auto flex-auto">
             <div class="container-full m-t-30 m-b-40">
                 <h2>Your Profile</h2>
+                <br>
+                <img src="/static/images/{{ current_user.profile_pic }}" width="200px" style="clip-path: circle();" alt="">
                 <br><br>
-                <form method="POST" action="{{ url_for('auth.update') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url_for('auth.update') }}">
 
                     {{ form.csrf_token }}
 
@@ -41,6 +43,13 @@
                                 <option value="{{ current_user.country }}">{{ current_user.country }}</option>
                                 {% include 'countrylist.html' %}
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group responsive m-b-30">
+                        <label>{{ form.profile_pic.label }}</label>
+                        <div class="input">
+                            <input name="profile_pic" type="file" accept="image/*" capture>
                         </div>
                     </div>
 

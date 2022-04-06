@@ -4,7 +4,9 @@
     {% include 'flashmessages.html' %}
 
     <div class="flex h-minus-nav">
-        {% include 'sidebar_settings.html' %}
+        <div class="tabs is-primary is-vertical hide-tablet-down">
+
+        </div>
 
 
         <div class="overflow-y-auto flex-auto">
@@ -16,9 +18,13 @@
                     </a>
                 {% endif %}
 
-                <div></br></div>
+                <div><br></div>
 
                 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+
+                <br>
+                <img src="/static/images/{{ user.profile_pic }}" width="200px" style="clip-path: circle();" alt="">
+                <br>
 
                 <div></br></div>
 

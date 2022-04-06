@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from numpy.ma import count
-from wtforms import StringField, PasswordField, EmailField, DateField, BooleanField
-from wtforms.validators import DataRequired, EqualTo, ValidationError, length
+from wtforms import StringField, PasswordField, EmailField, DateField, BooleanField, FileField
+from wtforms.validators import DataRequired, EqualTo, ValidationError
 from flask_login import current_user
 from myflask.models import User
 
@@ -56,6 +56,7 @@ class UpdateForm(FlaskForm):
     last_name = StringField(label='Last Name', validators=[DataRequired()])
     email = EmailField(label='Email Address', validators=[DataRequired()])
     country = StringField(label='Country', validators=[DataRequired()])
+    profile_pic = FileField(label='Profile Picture')
 
     def validate_email(self, email):
         users = User.query.filter_by(email=email.data)

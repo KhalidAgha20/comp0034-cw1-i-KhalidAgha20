@@ -6,6 +6,9 @@ from myflask import db, login_manager
 from myflask.auth.forms import SignupForm, LoginForm, UpdateForm, ChangePassword, DeleteAccount
 from myflask.models import User
 from datetime import timedelta
+import uuid, os, PIL
+from werkzeug.utils import secure_filename
+from pathlib import Path
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -53,7 +56,7 @@ def signup():
     if form.validate_on_submit():
         user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data,
                     DOB=form.DOB.data, user_type=form.user_type.data, country=form.country.data,
-                    username=form.username.data)
+                    username=form.username.data, profile_pic='default.png')
         user.set_password(form.password.data)
         try:
             db.session.add(user)
@@ -104,6 +107,13 @@ def update():
         current_user.last_name = form.last_name.data
         current_user.email = form.email.data
         current_user.country = form.country.data
+
+        pic = request.files['profile_pic']
+        if os.path.splitext(pic.filename)[1] == '.jpg' or os.path.splitext(pic.filename)[1] == '.png':
+            pic_name = str(uuid.uuid1()) + os.path.splitext(pic.filename)[1]
+            path = Path(__file__).parent.parent.joinpath('static', 'images', f'{pic_name}')
+            pic.save(path)
+            current_user.profile_pic = pic_name
         try:
             db.session.commit()
             flash('Your profile has been successfully update', 'blue-100')

@@ -44,8 +44,8 @@
                 {% endif %}
 
                 <div class="menu menu--nav is-right">
-                    <div class="nav-item menu-trigger"
-                    ><i class="d-icon d-user-profile-circle"></i>
+                    <div class="nav-item menu-trigger">
+                            <i class="d-icon d-user-profile-circle"></i>
                     </div>
                     <div class="menu-content">
                         <a href="{{ url_for('auth.update') }}">Profile</a>
@@ -85,8 +85,8 @@
                     </a>
                 {% endif %}
                 <div class="menu menu--nav is-right">
-                    <div class="nav-item menu-trigger"
-                    >{{ current_user.first_name }} <i class="d-icon d-user-profile-circle"></i>
+                    <div class="nav-item menu-trigger">
+                            {{ current_user.first_name }} <i class="d-icon d-user-profile-circle"></i>
                     </div>
                     <div class="menu-content">
                         <a href="{{ url_for('auth.update') }}">Account Settings</a>
