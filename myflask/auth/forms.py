@@ -32,6 +32,11 @@ class SignupForm(FlaskForm):
         if len(password.data) < 8:
             raise ValidationError('Make sure your password is at least 8 characters')
 
+    def validate_user_type(self, user_type):
+        if len(user_type.data) > 0:
+            if user_type.data != 'C' and user_type.data != 'A':
+                raise ValidationError('You think you are smart')
+
 
 class LoginForm(FlaskForm):
     username = StringField(label='Username', validators=[DataRequired()])
