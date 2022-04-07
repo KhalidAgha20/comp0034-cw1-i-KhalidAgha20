@@ -1,6 +1,10 @@
 # Coursework 2
-
+##Repository
 https://github.com/ucl-comp0035/comp0034-cw1-i-KhalidAgha20
+
+## Video
+https://youtu.be/168CqgyIbDQ
+
 
 The flask app for the coursework work in located inside the 'flask' folder. The app is run through the app.py file. The
 requirements to run the application is located in the requirements.txt folder.
